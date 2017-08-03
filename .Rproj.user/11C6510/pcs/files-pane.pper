@@ -1,0 +1,13 @@
+{
+    "path" : "~/Desktop/TREND",
+    "sortOrder" : [
+        {
+            "ascending" : false,
+            "columnIndex" : 3
+        },
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
