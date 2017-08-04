@@ -2,6 +2,7 @@ library(shiny)
 library(shinythemes)
 library(readr)
 
+
 exchange_to_currency_df <- as.data.frame(read_csv("exchange_to_currency.csv"))
 
 ##### Intitial exchange Prices #####
@@ -95,24 +96,41 @@ ui <- fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      selectInput("exchange",
-                  "Exchange",
-                  choices = unique(exchange_to_currency_df$exchange),
-                  selected = "Bitstamp"),
-      selectInput("currency",
-                  "Currency",
-                  choices = c("EUR", "USD")),
-      actionButton("go", "GO", icon("piggy-bank", lib = "glyphicon"),  style="color: #fff; background-color:green; border-color: green")
+      style = "min-height: 240px", 
+      width = 4,
+      
+      selectInput(
+        "exchange",
+        "Exchange",
+        choices = unique(exchange_to_currency_df$exchange),
+        selected = "Bitstamp"),
+      
+      selectInput(
+        "currency",
+        "Currency",
+        choices = c("EUR", "USD")),
+      
+      actionButton(
+        "go", 
+        "GO",
+        icon("piggy-bank", lib = "glyphicon"),  
+        style="color: #fff; background-color:green; border-color: green")
     ),
     
     #### Main Panel ####
     mainPanel(
-      textOutput("exchange_text"),
-      textOutput("pair_text"),
-      textOutput("ask_text"),
-      textOutput("bid_text"),
-      textOutput("last_text")
+      fluidRow(
+        sidebarPanel( 
+        width = 4, 
+        style = "min-height: 240px",
       
+        textOutput("exchange_text"),
+        textOutput("pair_text"),
+        textOutput("ask_text"),
+        textOutput("bid_text"),
+        textOutput("last_text")
+        )
+      )
     )
   )
 )
